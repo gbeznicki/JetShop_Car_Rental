@@ -16,7 +16,7 @@ namespace CarRental.BusinessLogic
 
         public IRentResponse RentVehicle(IRentRequest rentRequest)
         {
-            Guid bookingNumber = bookingNumberGenerator.GenerateBookingNumber();
+            throw new NotImplementedException();
         }
 
         public IReturnResponse ReturnVehicle(IReturnRequest returnRequest)
