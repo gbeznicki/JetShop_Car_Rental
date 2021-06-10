@@ -20,6 +20,20 @@ namespace CarRental.Persistence
             modelBuilder.Entity<VehicleModel>()
                 .HasOne(vm => vm.CarCategory)
                 .WithMany(vc => vc.Vehicles);
+
+            modelBuilder.Entity<VehicleCategoryModel>().HasData(
+                new VehicleCategoryModel { VehicleCategoryId = 1, VehicleCategoryName = "Compact" },
+                new VehicleCategoryModel { VehicleCategoryId = 2, VehicleCategoryName = "Premium" },
+                new VehicleCategoryModel { VehicleCategoryId = 3, VehicleCategoryName = "Minivan" });
+
+            modelBuilder.Entity<VehicleModel>().HasData(
+                new VehicleModel { CarCategoryId = 1, VehicleId = "EL01234" },
+                new VehicleModel { CarCategoryId = 2, VehicleId = "EL11234" },
+                new VehicleModel { CarCategoryId = 3, VehicleId = "EL21234" },
+                new VehicleModel { CarCategoryId = 1, VehicleId = "EL31234" },
+                new VehicleModel { CarCategoryId = 2, VehicleId = "EL41234" }
+                );
+
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
