@@ -1,5 +1,4 @@
-﻿using CarRental.Common;
-using CarRental.Interfaces;
+﻿using CarRental.Interfaces;
 using System;
 
 namespace CarRental.BusinessLogic.Vehicles
@@ -9,8 +8,6 @@ namespace CarRental.BusinessLogic.Vehicles
         public Compact(decimal baseDayRental, decimal kilometerPrice, string vehicleId) : base(baseDayRental, kilometerPrice, vehicleId)
         {
         }
-
-        public override CarCategory CarCategory => CarCategory.Compact;
 
         public override decimal GetCurrentRentCost(int numberOfDays, int numberOfKilometers)
         {
