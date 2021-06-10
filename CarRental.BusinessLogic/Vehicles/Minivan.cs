@@ -3,21 +3,18 @@ using System;
 
 namespace CarRental.BusinessLogic.Vehicles
 {
-    public class Minivan : IVehicle
+    public class Minivan : Vehicle
     {
-        public string GetReservationNumber()
+        public Minivan(decimal baseDayRental, decimal kilometerPrice) : base(baseDayRental, kilometerPrice)
         {
-            throw new NotImplementedException();
         }
 
-        public bool Rent()
+        public override decimal GetCurrentRentCost(int numberOfDays, int numberOfKilometers)
         {
-            throw new NotImplementedException();
-        }
+            if (!IsRented)
+                return 0;
 
-        public decimal Return()
-        {
-            throw new NotImplementedException();
+            return BaseDayRental * numberOfDays * 1.7m + (KilometerPrice * numberOfKilometers * 1.5m);
         }
     }
 }
