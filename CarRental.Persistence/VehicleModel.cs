@@ -8,8 +8,8 @@ namespace CarRental.Persistence
     {
         [Key]
         public string VehicleId { get; set; }
-        public int CarCategoryId { get; set; }
-        public VehicleCategoryModel CarCategory { get; set; }
+        public int VehicleCategoryId { get; set; }
+        public VehicleCategoryModel VehicleCategory { get; set; }
         public List<OrderModel> Orders { get; set; }
     }
 }
