@@ -2,7 +2,7 @@
 {
     public interface IRentalManager
     {
-        public void RentVehicle();
-        public void ReturnVehicle();
+        public IRentResponse RentVehicle(IRentRequest rentRequest);
+        public IReturnResponse ReturnVehicle(IReturnRequest returnRequest);
     }
 }

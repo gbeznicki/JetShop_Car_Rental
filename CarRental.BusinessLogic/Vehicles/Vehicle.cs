@@ -1,4 +1,5 @@
-﻿using CarRental.Interfaces;
+﻿using CarRental.Common;
+using CarRental.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,29 +14,24 @@ namespace CarRental.BusinessLogic.Vehicles
         protected DateTime rentDate;
         private readonly object locker = new object();
         protected bool isRented = false;
-        private IBookingNumberGenerator bookingNumberGenerator;
         private readonly string vehicleId;
         
         #endregion
 
-        protected Vehicle(decimal baseDayRental, decimal kilometerPrice, IBookingNumberGenerator generator)
+        protected Vehicle(decimal baseDayRental, decimal kilometerPrice, string vehicleId)
         {
             this.baseDayRental = baseDayRental;
             this.kilometerPrice = kilometerPrice;
-            bookingNumberGenerator = generator;
+            this.vehicleId = vehicleId;
         }
 
         #region Properties
         public bool IsRented => isRented;
         public decimal BaseDayRental => baseDayRental;
         public decimal KilometerPrice => kilometerPrice;
-        public abstract string Category { get; }
+        public abstract CarCategory CarCategory { get; }
         #endregion
         public abstract decimal GetCurrentRentCost(int numberOfDays, int numberOfKilometers);
-        public string GetReservationNumber() 
-        {
-            return bookingNumberGenerator.GenerateBookingNumber().ToString();
-        }
         public bool Rent()
         {
             if (!IsRented)

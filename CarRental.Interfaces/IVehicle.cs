@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarRental.Common;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,11 +9,10 @@ namespace CarRental.Interfaces
     {
         bool Rent();
         decimal Return(int numberOfKilometers);
-        string GetReservationNumber();
         decimal GetCurrentRentCost(int numberOfDays, int numberOfKilometers);
         public decimal BaseDayRental { get; }
         public decimal KilometerPrice { get; }
         public bool IsRented { get; }
-        public string Category { get; }
+        public CarCategory CarCategory { get; }
     }
 }

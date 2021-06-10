@@ -11,11 +11,6 @@ namespace CarRental.UnitTests
     {
         static readonly Container container;
 
-        static VehicleTests()
-        {
-            container = new Container();
-            container.Register<IBookingNumberGenerator, BookingNumberGenerator>();
-        }
 
         [SetUp]
         public void Setup()
@@ -25,9 +20,9 @@ namespace CarRental.UnitTests
         [Test]
         public void TestVehicleTypeof()
         {
-            IVehicle compact = new Compact(0, 0, container.GetInstance<IBookingNumberGenerator>());
-            IVehicle minivan = new Minivan(0, 0, container.GetInstance<IBookingNumberGenerator>());
-            IVehicle premium = new Premium(0, 0, container.GetInstance<IBookingNumberGenerator>());
+            IVehicle compact = new Compact(0, 0, "c");
+            IVehicle minivan = new Minivan(0, 0, "m");
+            IVehicle premium = new Premium(0, 0, "P");
 
             Assert.IsInstanceOf(typeof(Compact), compact);
             Assert.IsNotInstanceOf(typeof(Minivan), compact);
@@ -45,7 +40,7 @@ namespace CarRental.UnitTests
         [Test]
         public void TestRent()
         {
-            IVehicle vehicle = new Compact(10, 5, container.GetInstance<IBookingNumberGenerator>());
+            IVehicle vehicle = new Compact(10, 5, "c");
 
             bool rentalResult = vehicle.Rent();
 
@@ -56,7 +51,7 @@ namespace CarRental.UnitTests
         [Test]
         public void TestRentFail()
         {
-            IVehicle vehicle = new Compact(10, 5, container.GetInstance<IBookingNumberGenerator>());
+            IVehicle vehicle = new Compact(10, 5, "c");
 
             vehicle.Rent();
 
@@ -69,7 +64,7 @@ namespace CarRental.UnitTests
         [Test]
         public void TestSameDayReturnFail()
         {
-            IVehicle vehicle = new Compact(10, 5, container.GetInstance<IBookingNumberGenerator>());
+            IVehicle vehicle = new Compact(10, 5, "c");
 
             vehicle.Rent();
 
@@ -79,9 +74,9 @@ namespace CarRental.UnitTests
         [Test]
         public void TestCurrentRentCostCalculationNotRented()
         {
-            IVehicle compact = new Compact(10, 5, container.GetInstance<IBookingNumberGenerator>());
-            IVehicle minivan = new Minivan(10, 5, container.GetInstance<IBookingNumberGenerator>());
-            IVehicle premium = new Premium(10, 5, container.GetInstance<IBookingNumberGenerator>());
+            IVehicle compact = new Compact(0, 0, "c");
+            IVehicle minivan = new Minivan(0, 0, "m");
+            IVehicle premium = new Premium(0, 0, "P");
 
             int rentDays = 2;
             int kilometersDriven = 10;
@@ -98,9 +93,9 @@ namespace CarRental.UnitTests
         [Test]
         public void TestCurrentRentCostCalculation()
         {
-            IVehicle compact = new Compact(10, 5, container.GetInstance<IBookingNumberGenerator>());
-            IVehicle minivan = new Minivan(10, 5, container.GetInstance<IBookingNumberGenerator>());
-            IVehicle premium = new Premium(10, 5, container.GetInstance<IBookingNumberGenerator>());
+            IVehicle compact = new Compact(0, 0, "c");
+            IVehicle minivan = new Minivan(0, 0, "m");
+            IVehicle premium = new Premium(0, 0, "P");
 
             compact.Rent();
             minivan.Rent();
