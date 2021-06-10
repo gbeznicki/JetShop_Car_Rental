@@ -7,7 +7,11 @@ namespace CarRental.Interfaces
     public interface IVehicle
     {
         bool Rent();
+        decimal Return(int numberOfKilometers);
         string GetReservationNumber();
-        decimal Return();
+        decimal GetCurrentRentCost(int numberOfDays, int numberOfKilometers);
+        public decimal BaseDayRental { get; }
+        public decimal KilometerPrice { get; }
+        public bool IsRented { get; }
     }
 }
