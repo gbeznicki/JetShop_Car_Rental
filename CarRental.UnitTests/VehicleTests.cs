@@ -93,9 +93,9 @@ namespace CarRental.UnitTests
         [Test]
         public void TestCurrentRentCostCalculation()
         {
-            IVehicle compact = new Compact(0, 0, "c");
-            IVehicle minivan = new Minivan(0, 0, "m");
-            IVehicle premium = new Premium(0, 0, "P");
+            IVehicle compact = new Compact(10, 5, "c");
+            IVehicle minivan = new Minivan(10, 5, "m");
+            IVehicle premium = new Premium(10, 5, "P");
 
             compact.Rent();
             minivan.Rent();
