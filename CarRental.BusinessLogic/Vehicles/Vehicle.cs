@@ -13,25 +13,28 @@ namespace CarRental.BusinessLogic.Vehicles
         protected DateTime rentDate;
         private readonly object locker = new object();
         protected bool isRented = false;
+        private IBookingNumberGenerator bookingNumberGenerator;
+        private readonly string vehicleId;
+        
         #endregion
 
-        protected Vehicle(decimal baseDayRental, decimal kilometerPrice)
+        protected Vehicle(decimal baseDayRental, decimal kilometerPrice, IBookingNumberGenerator generator)
         {
             this.baseDayRental = baseDayRental;
             this.kilometerPrice = kilometerPrice;
+            bookingNumberGenerator = generator;
         }
 
         #region Properties
         public bool IsRented => isRented;
         public decimal BaseDayRental => baseDayRental;
         public decimal KilometerPrice => kilometerPrice;
+        public abstract string Category { get; }
         #endregion
-
         public abstract decimal GetCurrentRentCost(int numberOfDays, int numberOfKilometers);
-
         public string GetReservationNumber() 
         {
-            throw new NotImplementedException();
+            return bookingNumberGenerator.GenerateBookingNumber().ToString();
         }
         public bool Rent()
         {

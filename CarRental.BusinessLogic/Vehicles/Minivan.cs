@@ -5,9 +5,11 @@ namespace CarRental.BusinessLogic.Vehicles
 {
     public class Minivan : Vehicle
     {
-        public Minivan(decimal baseDayRental, decimal kilometerPrice) : base(baseDayRental, kilometerPrice)
+        public Minivan(decimal baseDayRental, decimal kilometerPrice, IBookingNumberGenerator generator) : base(baseDayRental, kilometerPrice, generator)
         {
         }
+
+        public override string Category => "Minivan";
 
         public override decimal GetCurrentRentCost(int numberOfDays, int numberOfKilometers)
         {

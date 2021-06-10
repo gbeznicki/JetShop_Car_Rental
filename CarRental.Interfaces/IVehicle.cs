@@ -13,5 +13,6 @@ namespace CarRental.Interfaces
         public decimal BaseDayRental { get; }
         public decimal KilometerPrice { get; }
         public bool IsRented { get; }
+        public string Category { get; }
     }
 }
