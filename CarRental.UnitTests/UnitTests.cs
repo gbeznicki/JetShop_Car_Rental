@@ -4,6 +4,7 @@ namespace CarRental.UnitTests
 {
     public class Tests
     {
+        IVehicle vehicle;
         [SetUp]
         public void Setup()
         {
