@@ -1,8 +1,10 @@
 using CarRental.BusinessLogic;
+using CarRental.BusinessLogic.Miscellaneous;
 using CarRental.BusinessLogic.Vehicles;
 using CarRental.Interfaces;
 using NUnit.Framework;
 using SimpleInjector;
+using System;
 
 namespace CarRental.UnitTests
 {
@@ -20,9 +22,9 @@ namespace CarRental.UnitTests
         [Test]
         public void TestVehicleTypeof()
         {
-            IVehicle compact = new Compact(0, 0, "c");
-            IVehicle minivan = new Minivan(0, 0, "m");
-            IVehicle premium = new Premium(0, 0, "P");
+            IVehicle compact = new Compact(0, 0, "c", false);
+            IVehicle minivan = new Minivan(0, 0, "m", false);
+            IVehicle premium = new Premium(0, 0, "P", false);
 
             Assert.IsInstanceOf(typeof(Compact), compact);
             Assert.IsNotInstanceOf(typeof(Minivan), compact);
@@ -40,9 +42,9 @@ namespace CarRental.UnitTests
         [Test]
         public void TestRent()
         {
-            IVehicle vehicle = new Compact(10, 5, "c");
+            IVehicle vehicle = new Compact(10, 5, "c", false);
 
-            bool rentalResult = vehicle.Rent();
+            bool rentalResult = vehicle.Rent(DateTime.Now);
 
             Assert.That(rentalResult);
             Assert.That(vehicle.IsRented);
@@ -51,11 +53,11 @@ namespace CarRental.UnitTests
         [Test]
         public void TestRentFail()
         {
-            IVehicle vehicle = new Compact(10, 5, "c");
+            IVehicle vehicle = new Compact(10, 5, "c", false);
 
-            vehicle.Rent();
+            vehicle.Rent(DateTime.Now);
 
-            bool rentalResult = vehicle.Rent();
+            bool rentalResult = vehicle.Rent(DateTime.Now);
 
             Assert.That(rentalResult == false);
             Assert.That(vehicle.IsRented);
@@ -64,19 +66,19 @@ namespace CarRental.UnitTests
         [Test]
         public void TestSameDayReturnFail()
         {
-            IVehicle vehicle = new Compact(10, 5, "c");
+            IVehicle vehicle = new Compact(10, 5, "c", false);
 
-            vehicle.Rent();
+            vehicle.Rent(DateTime.Now);
 
-            Assert.Throws(typeof(CarRentalException), () => vehicle.Return(100));
+            Assert.Throws(typeof(CarRentalException), () => vehicle.Return(DateTime.Now, 100));
         }
 
         [Test]
         public void TestCurrentRentCostCalculationNotRented()
         {
-            IVehicle compact = new Compact(0, 0, "c");
-            IVehicle minivan = new Minivan(0, 0, "m");
-            IVehicle premium = new Premium(0, 0, "P");
+            IVehicle compact = new Compact(0, 0, "c", false);
+            IVehicle minivan = new Minivan(0, 0, "m", false);
+            IVehicle premium = new Premium(0, 0, "P", false);
 
             int rentDays = 2;
             int kilometersDriven = 10;
@@ -93,13 +95,13 @@ namespace CarRental.UnitTests
         [Test]
         public void TestCurrentRentCostCalculation()
         {
-            IVehicle compact = new Compact(10, 5, "c");
-            IVehicle minivan = new Minivan(10, 5, "m");
-            IVehicle premium = new Premium(10, 5, "P");
+            IVehicle compact = new Compact(10, 5, "c", false);
+            IVehicle minivan = new Minivan(10, 5, "m", false);
+            IVehicle premium = new Premium(10, 5, "P", false);
 
-            compact.Rent();
-            minivan.Rent();
-            premium.Rent();
+            compact.Rent(DateTime.Now);
+            minivan.Rent(DateTime.Now);
+            premium.Rent(DateTime.Now);
 
             int rentDays = 2;
             int kilometersDriven = 10;

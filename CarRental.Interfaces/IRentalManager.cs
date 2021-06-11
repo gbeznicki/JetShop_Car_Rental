@@ -1,8 +1,11 @@
-﻿namespace CarRental.Interfaces
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
+
+namespace CarRental.Interfaces
 {
     public interface IRentalManager
     {
-        public IRentResponse RentVehicle(IRentRequest rentRequest);
-        public IReturnResponse ReturnVehicle(IReturnRequest returnRequest);
+        public Guid RentVehicle (IOrder rentRequest);
+        public decimal ReturnVehicle(IReturnOrder returnRequest);
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace CarRental.BusinessLogic
+namespace CarRental.BusinessLogic.Miscellaneous
 {
     public class CarRentalException : Exception
     {

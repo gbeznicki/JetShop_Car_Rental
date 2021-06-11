@@ -5,7 +5,7 @@ namespace CarRental.BusinessLogic.Vehicles
 {
     public class Minivan : Vehicle
     {
-        public Minivan(decimal baseDayRental, decimal kilometerPrice, string vehicleId) : base(baseDayRental, kilometerPrice, vehicleId)
+        public Minivan(decimal baseDayRental, decimal kilometerPrice, string vehicleId, bool isRented) : base(baseDayRental, kilometerPrice, vehicleId, isRented)
         {
         }
 

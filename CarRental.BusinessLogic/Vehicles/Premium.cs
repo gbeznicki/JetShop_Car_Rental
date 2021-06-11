@@ -5,7 +5,7 @@ namespace CarRental.BusinessLogic.Vehicles
 {
     public class Premium : Vehicle
     {
-        public Premium(decimal baseDayRental, decimal kilometerPrice, string vehicleId) : base(baseDayRental, kilometerPrice, vehicleId)
+        public Premium(decimal baseDayRental, decimal kilometerPrice, string vehicleId, bool isRented) : base(baseDayRental, kilometerPrice, vehicleId, isRented)
         {
         }
 

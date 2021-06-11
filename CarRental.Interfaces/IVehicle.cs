@@ -6,11 +6,12 @@ namespace CarRental.Interfaces
 {
     public interface IVehicle
     {
-        bool Rent();
-        decimal Return(int numberOfKilometers);
+        bool Rent(DateTime rentDate);
+        decimal Return(DateTime returnDate, int numberOfKilometers);
         decimal GetCurrentRentCost(int numberOfDays, int numberOfKilometers);
         public decimal BaseDayRental { get; }
         public decimal KilometerPrice { get; }
         public bool IsRented { get; }
+        public string VehicleId { get; }
     }
 }

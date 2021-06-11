@@ -13,8 +13,10 @@ namespace CarRental.Persistence
         public DateTime CustomerDateOfBirth { get; set; }
         public DateTime OrderDate { get; set; }
         public DateTime RentalDate { get; set; }
-        public int CurrentMileage { get; set; }
-        public int VehicleId { get; set; }
+        public DateTime? ReturnDate { get; set; }
+        public int RentalMileage { get; set; }
+        public int? ReturnMileage { get; set; }
+        public string VehicleId { get; set; }
         public VehicleModel Vehicle { get; set; }
     }
 }

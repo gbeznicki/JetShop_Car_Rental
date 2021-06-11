@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CarRental.BusinessLogic
+namespace CarRental.BusinessLogic.Miscellaneous
 {
     public class BookingNumberGenerator : IBookingNumberGenerator
     {

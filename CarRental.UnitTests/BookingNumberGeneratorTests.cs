@@ -1,4 +1,5 @@
 ﻿using CarRental.BusinessLogic;
+using CarRental.BusinessLogic.Miscellaneous;
 using CarRental.BusinessLogic.Vehicles;
 using CarRental.Interfaces;
 using NUnit.Framework;

@@ -1,4 +1,6 @@
-﻿using CarRental.Interfaces;
+﻿using CarRental.BusinessLogic.Miscellaneous;
+using CarRental.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,21 +9,37 @@ namespace CarRental.BusinessLogic
 {
     public class RentalManager : IRentalManager
     {
-        private readonly IBookingNumberGenerator bookingNumberGenerator;
+        private readonly IOrderRepository orderRepository;
 
-        public RentalManager(IBookingNumberGenerator bookingNumberGenerator)
+        public RentalManager(IOrderRepository orderRepository)
         {
-            this.bookingNumberGenerator = bookingNumberGenerator;
+            this.orderRepository = orderRepository;
         }
 
-        public IRentResponse RentVehicle(IRentRequest rentRequest)
+        public Guid RentVehicle(IOrder rentRequest)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Guid bookingNumber = orderRepository.CreateOrder(rentRequest);
+                return bookingNumber;
+            }
+            catch
+            {
+                throw;
+            }
         }
 
-        public IReturnResponse ReturnVehicle(IReturnRequest returnRequest)
+        public decimal ReturnVehicle(IReturnOrder returnRequest)
         {
-            throw new NotImplementedException();
+            try
+            {
+                decimal amount = orderRepository.CloseOrder(returnRequest);
+                return amount;
+            }
+            catch
+            {
+                throw;
+            }
         }
     }
 }
