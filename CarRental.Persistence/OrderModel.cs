@@ -7,8 +7,8 @@ namespace CarRental.Persistence
 {
     public class OrderModel
     {
-        [Key]
         public int OrderId { get; set; }
+        [Key]
         public Guid BookingNumber { get; set; }
         public DateTime CustomerDateOfBirth { get; set; }
         public DateTime OrderDate { get; set; }

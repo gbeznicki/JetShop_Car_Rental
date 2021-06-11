@@ -16,7 +16,7 @@ namespace CarRental.BusinessLogic
             this.orderRepository = orderRepository;
         }
 
-        public Guid RentVehicle(IOrder rentRequest)
+        public Guid RentVehicle(IRentOrder rentRequest)
         {
             try
             {

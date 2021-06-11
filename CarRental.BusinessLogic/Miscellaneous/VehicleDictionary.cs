@@ -1,5 +1,6 @@
 ﻿using CarRental.Interfaces;
 using CarRental.Persistence;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,7 +19,8 @@ namespace CarRental.BusinessLogic.Miscellaneous
             using (CarRentalDbContext carRentalDbContext = new CarRentalDbContext())
             {
                 vehicles = new List<IVehicle>();
-                IEnumerable<VehicleModel> vehicleModels = carRentalDbContext.Vehicles;
+                IEnumerable<VehicleModel> vehicleModels = carRentalDbContext.Vehicles
+                    .Include(v => v.VehicleCategory);
                 foreach (VehicleModel model in vehicleModels)
                 {
                     IVehicle v = ModelToVehicleMapper.MapModelToVehicle(model);

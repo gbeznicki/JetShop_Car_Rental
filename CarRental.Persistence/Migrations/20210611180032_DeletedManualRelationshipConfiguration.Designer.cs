@@ -3,14 +3,16 @@ using System;
 using CarRental.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CarRental.Persistence.Migrations
 {
     [DbContext(typeof(CarRentalDbContext))]
-    partial class CarRentalDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210611180032_DeletedManualRelationshipConfiguration")]
+    partial class DeletedManualRelationshipConfiguration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -18,8 +20,11 @@ namespace CarRental.Persistence.Migrations
 
             modelBuilder.Entity("CarRental.Persistence.OrderModel", b =>
                 {
-                    b.Property<Guid>("BookingNumber")
+                    b.Property<int>("OrderId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<Guid>("BookingNumber")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CustomerDateOfBirth")
@@ -27,9 +32,6 @@ namespace CarRental.Persistence.Migrations
 
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("RentalDate")
                         .HasColumnType("TEXT");
@@ -46,7 +48,7 @@ namespace CarRental.Persistence.Migrations
                     b.Property<string>("VehicleId")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("BookingNumber");
+                    b.HasKey("OrderId");
 
                     b.HasIndex("VehicleId");
 

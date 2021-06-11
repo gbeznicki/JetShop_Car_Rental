@@ -3,7 +3,7 @@ using System;
 
 namespace CarRental.Interfaces
 {
-    public interface IOrder
+    public interface IRentOrder
     {
         public DateTime CustomersDateOfBirth { get; set; }
         public DateTime RentalDateTime { get; set; }

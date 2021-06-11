@@ -21,11 +21,6 @@ namespace CarRental.UnitTests
             container.Register<IBookingNumberGenerator, BookingNumberGenerator>();
         }
 
-        [SetUp]
-        public void SetUp()
-        {
-        }
-
         [Test]
         public void TestBNGeneration()
         {

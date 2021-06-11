@@ -13,25 +13,18 @@ namespace CarRental.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<OrderModel>()
-                .HasOne(v => v.Vehicle)
-                .WithMany(o => o.Orders);
+            VehicleCategoryModel compacCat = new VehicleCategoryModel { VehicleCategoryId = 1, VehicleCategoryName = "Compact" };
+            VehicleCategoryModel premiumCat = new VehicleCategoryModel { VehicleCategoryId = 2, VehicleCategoryName = "Premium" };
+            VehicleCategoryModel minivanCat = new VehicleCategoryModel { VehicleCategoryId = 3, VehicleCategoryName = "Minivan" };
 
-            modelBuilder.Entity<VehicleModel>()
-                .HasOne(vm => vm.VehicleCategory)
-                .WithMany(vc => vc.Vehicles);
-
-            modelBuilder.Entity<VehicleCategoryModel>().HasData(
-                new VehicleCategoryModel { VehicleCategoryId = 1, VehicleCategoryName = "Compact" },
-                new VehicleCategoryModel { VehicleCategoryId = 2, VehicleCategoryName = "Premium" },
-                new VehicleCategoryModel { VehicleCategoryId = 3, VehicleCategoryName = "Minivan" });
+            modelBuilder.Entity<VehicleCategoryModel>().HasData(compacCat, premiumCat, minivanCat);
 
             modelBuilder.Entity<VehicleModel>().HasData(
-                new VehicleModel { VehicleCategoryId = 1, VehicleId = "EL01234" },
-                new VehicleModel { VehicleCategoryId = 2, VehicleId = "EL11234" },
-                new VehicleModel { VehicleCategoryId = 3, VehicleId = "EL21234" },
-                new VehicleModel { VehicleCategoryId = 1, VehicleId = "EL31234" },
-                new VehicleModel { VehicleCategoryId = 2, VehicleId = "EL41234" }
+                new VehicleModel { VehicleCategoryId = 1, VehicleId = "EL01234", BaseDayRental = 1m, CurrentMileage = 1, IsRented = false, KilometerPrice = 1m },
+                new VehicleModel { VehicleCategoryId = 2, VehicleId = "EL11234", BaseDayRental = 2m, CurrentMileage = 100, IsRented = false, KilometerPrice = 10m },
+                new VehicleModel { VehicleCategoryId = 3, VehicleId = "EL21234", BaseDayRental = 100m, CurrentMileage = 1010, IsRented = false, KilometerPrice = 5m },
+                new VehicleModel { VehicleCategoryId = 1, VehicleId = "EL31234", BaseDayRental = 75m, CurrentMileage = 5, IsRented = false, KilometerPrice = 50m },
+                new VehicleModel { VehicleCategoryId = 2, VehicleId = "EL41234", BaseDayRental = 15m, CurrentMileage = 0, IsRented = false, KilometerPrice = 20m }
                 );
 
         }

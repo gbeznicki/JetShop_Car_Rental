@@ -46,7 +46,7 @@ namespace CarRental.BusinessLogic.Repositories
             return rentCost;
         }
 
-        public Guid CreateOrder(IOrder order)
+        public Guid CreateOrder(IRentOrder order)
         {
             if (order.RentalDateTime < DateTime.Now)
                 throw new CarRentalException("Car rental date can't be from the past");

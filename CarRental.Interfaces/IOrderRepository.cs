@@ -5,7 +5,7 @@ namespace CarRental.Interfaces
 {
     public interface IOrderRepository
     {
-        public Guid CreateOrder(IOrder order);
+        public Guid CreateOrder(IRentOrder order);
         public decimal CloseOrder(IReturnOrder order);        
     }
 }
